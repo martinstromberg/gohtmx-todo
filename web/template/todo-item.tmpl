@@ -1,0 +1,25 @@
+{{define "todoitem"}}
+    <li class="todo-item">
+        <form>
+            <input
+                hx-put="/todos/{{.Id}}"
+                hx-swap="outerHTML"
+                hx-target="closest .todo-item"
+            {{if .IsCompleted}}
+                checked="true"
+            {{end}}
+                id="{{.Id}}"
+                name="isCompleted"
+                type="checkbox" />
+            <label for="{{.Id}}">
+                {{.Title}}
+            </label>
+            &nbsp;|&nbsp;
+            <button
+                hx-delete="/todos/{{.Id}}"
+                hx-swap="delete"
+                hx-target="closest .todo-item"
+            >Delete</button>
+        </form>
+    </li>
+{{end}}

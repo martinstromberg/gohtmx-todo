@@ -1,0 +1,19 @@
+{{define "title"}}ToDos{{end}}
+
+{{define "main"}}
+    <ul>
+        {{ range $item := .HtmlStrings }}
+            {{$item}}
+        {{end}}
+        <li>
+            <form
+                hx-on::after-request="this.reset()"
+                hx-post="/todos"
+                hx-swap="beforebegin"
+                hx-target="closest li">
+                <input type="text" name="title" />
+                <input type="submit" value="Save" />
+            </form>
+        </li>
+    </ul>
+{{end}}
